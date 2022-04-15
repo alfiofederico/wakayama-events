@@ -84,6 +84,12 @@ export const AuthProvider = ({ children }) => {
       setUser(data.user)
     }else {
       setUser(null)
+       if (
+         router.pathname === "/account/dashboard" ||
+         router.pathname === "/events/add"
+       ) {
+         router.push("/account/login");
+       }
     }
   }
 

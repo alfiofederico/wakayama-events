@@ -4,10 +4,18 @@ import { API_URL } from "@/config/index"
 import styles from '@/styles/Dashboard.module.css'
 import DashboardEvent from "@/components/DashboardEvent"
 import { useRouter } from "next/router"
+import { useContext } from "react";
+import AuthContext from "@/context/AuthContext";
 
 export default function DashboardPage({ events, token }) {
 
   const router = useRouter()
+
+   const { user } = useContext(AuthContext);
+
+   if (!user) {
+     return null;
+   }
 
   const deleteEvent = async (id) => {
     if (confirm("Are you sure?")) {
@@ -59,7 +67,7 @@ export async function getServerSideProps({req}){
   return {
     props: {
       events,
-      token
-    }
-  }
+      token: token || "",
+    },
+  };
 }

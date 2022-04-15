@@ -7,9 +7,16 @@ import { API_URL } from '@/config/index'
 import styles from '@/styles/Form.module.css'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useContext } from "react";
+import AuthContext from "@/context/AuthContext";
 
 export default function AddEventPage({ token }) {
 
+   const { user } = useContext(AuthContext);
+
+   if (!user) {
+     return null;
+   }
   const [values, setValues] = useState({
     name: "",
     performers: "",
@@ -152,7 +159,7 @@ export async function getServerSideProps({req}){
 
   return {
     props: {
-      token
-    }
-  }
+      token: token || "",
+    },
+  };
 }
