@@ -1,6 +1,7 @@
+import { parseCookies } from "@/helpers/index";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import {FaImage} from 'react-icons/fa'
+import { FaImage } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/Layout";
@@ -11,7 +12,7 @@ import styles from "@/styles/Form.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function EditEventPage({ evt }) {
+export default function EditEventPage({ evt, token }) {
   const [values, setValues] = useState({
     name: evt.name,
     performers: evt.performers,
@@ -22,9 +23,11 @@ export default function EditEventPage({ evt }) {
     description: evt.description,
   });
 
-  const [imagePreview, setImagePreview] = useState(evt.image ? evt.image.formats.thumbnail.url : null)
+  const [imagePreview, setImagePreview] = useState(
+    evt.image ? evt.image.formats.thumbnail.url : null
+  );
 
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
 
@@ -44,11 +47,16 @@ export default function EditEventPage({ evt }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
 
     if (!res.ok) {
+      if (res.status === 403 || res.status === 401) {
+        toast.error("Unhautorized");
+        return;
+      }
       toast.error("Something Went Wrong");
     } else {
       const evt = await res.json();
@@ -60,7 +68,6 @@ export default function EditEventPage({ evt }) {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
-
 
   const imageUploaded = async (e) => {
     const res = await fetch(`${API_URL}/events/${evt.id}`);
@@ -154,34 +161,38 @@ export default function EditEventPage({ evt }) {
 
       <h2>Event Image</h2>
       {imagePreview ? (
-        <Image src={imagePreview} height={100} width={170}/>
-      ) : <div>
-            <p>No images uploaded</p>
-        </div>}
-
+        <Image src={imagePreview} height={100} width={170} />
+      ) : (
         <div>
-          <button onClick={() => setShowModal(true)} className="btn-secondary">
-            <FaImage /> Upload Image
-          </button>
+          <p>No images uploaded</p>
         </div>
+      )}
 
-        <Modal show={showModal} onClose={() => setShowModal(false)}>
-          <ImageUpload evtId={evt.id}  imageUploaded={imageUploaded}/>
-        </Modal>
+      <div>
+        <button onClick={() => setShowModal(true)} className="btn-secondary">
+          <FaImage /> Upload Image
+        </button>
+      </div>
+
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} token={token}/>
+      </Modal>
     </Layout>
   );
 }
 
+export async function getServerSideProps({ params: { id }, req }) {
+  const { token } = parseCookies(req);
 
-export async function getServerSideProps({params: {id}, req}){
-  const res = await fetch(`${API_URL}/events/${id}`)
-  const evt = await res.json()
+  const res = await fetch(`${API_URL}/events/${id}`);
+  const evt = await res.json();
 
-  console.log(req.headers.cookie)
+  
 
   return {
-    props:{
-      evt
-    }
-  }
+    props: {
+      evt,
+      token
+    },
+  };
 }
