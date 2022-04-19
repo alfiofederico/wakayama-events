@@ -6,7 +6,7 @@ function Footer() {
     <footer className={styles.footer}>
       <p>Copyright &copy; Wakayama Events 2022</p>
       <p>
-        Developed by <a href="https://alfiofedericodp.netlify.app/" target="_blank">Federico</a>
+        Developed by <a href="https://alfiofedericodp.netlify.app/" target="_blank" rel="noreferrer">Federico</a>
       </p>
       <p>
         <Link href="/about" >About</Link>

@@ -11,12 +11,10 @@ import { useContext } from "react";
 import AuthContext from "@/context/AuthContext";
 
 export default function AddEventPage({ token }) {
-
+  const router = useRouter();
    const { user } = useContext(AuthContext);
 
-   if (!user) {
-     return null;
-   }
+   
   const [values, setValues] = useState({
     name: "",
     performers: "",
@@ -27,7 +25,11 @@ export default function AddEventPage({ token }) {
     description: "",
   });
 
-  const router = useRouter()
+  if (!user) {
+    return null;
+  }
+
+  
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -39,6 +41,7 @@ export default function AddEventPage({ token }) {
 
     if (hasEmptyFields) {
      return toast.error("Please fill in all fields");
+     
     }
 
       const res = await fetch(`${API_URL}/events`, {
@@ -85,7 +88,7 @@ export default function AddEventPage({ token }) {
               />
             </div>
             <div>
-              <label htmlFor="performers">Performers</label>
+              <label htmlFor="performers">Performer / Organizer / Topic</label>
               <input
                 type="text"
                 name="performers"

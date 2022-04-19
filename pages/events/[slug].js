@@ -17,7 +17,7 @@ export default function EventPage({evt}) {
   return (
     <Layout>
       <div className={styles.event}>
-{/*         <div className={styles.controls}>
+        {/*         <div className={styles.controls}>
           <Link href={`/events/edit/${evt.id}`}>
             <a>
               <FaPencilAlt /> Edit Event
@@ -43,14 +43,14 @@ export default function EventPage({evt}) {
           </div>
         )}
 
-        <h3>Performers:</h3>
+        <h3>Performers / Organizer / Topic:</h3>
         <p>{evt.performers}</p>
         <h3>Description:</h3>
         <p>{evt.description}</p>
         <h3>Location: {evt.venue}</h3>
         <p>{evt.address}</p>
 
-        <EventMap evt={evt}/>
+        <EventMap evt={evt} />
 
         <Link href="/events">
           <a className={styles.back}>{"<"} Go Back</a>
@@ -61,7 +61,7 @@ export default function EventPage({evt}) {
 }
 
 
-export async function getStaticPaths(){
+/* export async function getStaticPaths(){
   const res = await fetch(`${API_URL}/events`)
 
   const events = await res.json()
@@ -91,10 +91,10 @@ export async function getStaticProps({params:{slug}}) {
     },
     revalidate: 1
   }
-}
-/* export async function getServerSideProps({query:{slug}}) {
+} */
+export async function getServerSideProps({query:{slug}}) {
 
-  const res = await fetch(`${API_URL}/api/events/${slug}`)
+  const res = await fetch(`${API_URL}/events?slug=${slug}`)
 
   const events = await res.json()
   return {
@@ -102,4 +102,4 @@ export async function getStaticProps({params:{slug}}) {
       evt: events[0]
     }
   }
-} */
+} 
