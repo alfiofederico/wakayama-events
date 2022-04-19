@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import EventMap from "@/components/EventMap";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Event.module.css"
 import Link from "next/link";
@@ -48,6 +49,8 @@ export default function EventPage({evt}) {
         <p>{evt.description}</p>
         <h3>Location: {evt.venue}</h3>
         <p>{evt.address}</p>
+
+        <EventMap evt={evt}/>
 
         <Link href="/events">
           <a className={styles.back}>{"<"} Go Back</a>
