@@ -6,10 +6,27 @@ function Footer() {
     <footer className={styles.footer}>
       <p>Copyright &copy; Wakayama Events 2022</p>
       <p>
-        Developed by <a href="https://alfiofedericodp.netlify.app/" target="_blank" rel="noreferrer">Federico</a>
+        Developed by{" "}
+        <a
+          href="https://alfiofedericodp.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Federico
+        </a>
       </p>
       <p>
-        <Link href="/about" >About</Link>
+        Visit the Wakayama International club on{" "}
+        <a
+          href="https://www.facebook.com/groups/10150125009215317"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Facebook
+        </a>
+      </p>
+      <p>
+        <Link href="/about">About</Link>
       </p>
     </footer>
   );
