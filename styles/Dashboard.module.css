@@ -8,3 +8,10 @@
   font-size: 25px;
   color: red;
 }
+
+@media (max-width: 600px) {
+  .dash h3 {
+  font-size: 18px;
+  color: red;
+}
+}
