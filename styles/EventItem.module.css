@@ -24,6 +24,10 @@
     align-items: center;
   }
 
+  .event h3 {
+    font-size: 1em;
+  }
+
   .info{
     margin-bottom: 20px;
   }

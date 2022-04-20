@@ -43,7 +43,7 @@ export default function EventPage({evt}) {
           </div>
         )}
 
-        <h3>Performers / Organizer / Topic:</h3>
+        {/* <h3>Performers / Organizer / Topic:</h3> */}
         <p>{evt.performers}</p>
         <h3>Description:</h3>
         <p>{evt.description}</p>

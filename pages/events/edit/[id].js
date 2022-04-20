@@ -93,7 +93,7 @@ export default function EditEventPage({ evt, token }) {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+{/*           <div>
             <label htmlFor="performers">Performers / Organizer / Topic</label>
             <input
               type="text"
@@ -102,7 +102,7 @@ export default function EditEventPage({ evt, token }) {
               value={values.performers}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
           <div>
             <label htmlFor="venue">Venue</label>
             <input

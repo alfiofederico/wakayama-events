@@ -17,7 +17,7 @@ export default function AddEventPage({ token }) {
    
   const [values, setValues] = useState({
     name: "",
-    performers: "",
+    /* performers: "", */
     venue: "",
     address: "",
     date: "",
@@ -87,8 +87,8 @@ export default function AddEventPage({ token }) {
                 onChange={handleInputChange}
               />
             </div>
-            <div>
-              <label htmlFor="performers">Performer / Organizer / Topic</label>
+{/*             <div>
+             <label htmlFor="performers">Performer / Organizer / Topic</label>
               <input
                 type="text"
                 name="performers"
@@ -96,7 +96,7 @@ export default function AddEventPage({ token }) {
                 value={values.performers}
                 onChange={handleInputChange}
               />
-            </div>
+            </div>  */}
             <div>
               <label htmlFor="venue">Venue</label>
               <input

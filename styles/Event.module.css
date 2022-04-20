@@ -31,3 +31,16 @@
   display: block;
   margin-top: 40px;
 }
+
+@media (max-width: 600px) {
+  .event h3{
+  font-size: 18px;
+}
+  .event h1{
+  font-size: 1em;
+}
+
+.event p {
+  font-size: 14px;
+}
+}

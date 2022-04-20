@@ -3,3 +3,10 @@
   max-width: 960px;
   padding: 0 30px;
 }
+
+
+@media (max-width: 600px) {
+  .container h1  {
+    font-size: 1.3em;
+  }
+}
