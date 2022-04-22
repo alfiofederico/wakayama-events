@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import ReactMapGl, { Marker } from "react-map-gl";
 import Map from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Geocode from "react-geocode";
+/* import Geocode from "react-geocode"; */
 
 
 
@@ -21,7 +21,7 @@ export default function EventMap({ evt }) {
     zoom: 12,
   });
  
-    useEffect(() => {
+ /*    useEffect(() => {
       // Get latitude & longitude from address.
       Geocode.fromAddress(evt.address).then(
         (response) => {
@@ -35,9 +35,22 @@ export default function EventMap({ evt }) {
           console.error(error);
         }
       );
-    }, []);
+    }, []); */
 
-  Geocode.setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY);
+   useEffect(() => {
+     fetch(
+       `https://api.geoapify.com/v1/geocode/search?text=${evt.address}&apiKey=${process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY}`
+     )
+       .then((response) => response.json())
+       .then((result) => {
+         const { lat, lon } = result.features[0].properties;
+         setLat(lat);
+         setLng(lon);
+         setViewState({ ...viewState, latitude: lat, longitude: lon });
+         setLoading(false);
+       })
+       .catch((error) => console.log("error", error));
+   }, []);
 
    if (loading) return false;
 
