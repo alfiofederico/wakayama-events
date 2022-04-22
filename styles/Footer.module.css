@@ -9,7 +9,12 @@
 
 
 @media (max-width: 600px) {
-  .footer p  {
+ .coffeeButtonText{
     font-size: 10px;
   }
+
+  .coffeeImage{
+    height: 4px;
+  }
+
 }
