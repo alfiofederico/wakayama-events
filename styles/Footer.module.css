@@ -7,11 +7,24 @@
   margin: 5px 0;
 }
 
+.footer img {
+  height: 20px;
+}
+
 
 @media (max-width: 600px) {
- .coffeeButtonText{
+ .footer a{
     font-size: 10px;
   }
+
+  .footer p {
+   font-size: 10px;
+}
+
+.footer img {
+  height: 15px;
+}
+
 
   .coffeeImage{
     height: 4px;

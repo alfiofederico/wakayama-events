@@ -28,9 +28,9 @@ function Footer() {
       <p>
         <Link href="/about">About</Link>
       </p>
-      <div>
+      
         <Cofee />
-      </div>
+      
     </footer>
   );
 }
