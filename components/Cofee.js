@@ -6,6 +6,7 @@ export default function Cofee() {
       className="buyButton"
       target="_blank"
       href="https://www.buymeacoffee.com/fefferico8X"
+      rel="noreferrer"
     >
       <img
         className="coffeeImage"
@@ -15,4 +16,4 @@ export default function Cofee() {
       <span className="coffeeButtonText">Support me with a Beer :) </span>
     </a>
   );
-}
+  }
