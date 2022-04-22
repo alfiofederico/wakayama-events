@@ -29,7 +29,7 @@ export default function EventPage({evt}) {
         </div> */}
 
         <span>
-          {new Date(evt.date).toLocaleDateString("ja-JP")} at {evt.time}
+          {new Date(evt.date).toLocaleDateString("ja-JP")} from {evt.time}
         </span>
         <h1>{evt.name}</h1>
         <ToastContainer />
