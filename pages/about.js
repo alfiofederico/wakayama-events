@@ -7,7 +7,7 @@ export default function AboutPage() {
     <Layout title="About Events">
       <h1>About this app</h1>
       <p>Find the latest events in Wakayama!</p>
-      <p>Version 1.0.0</p>
+      <p>Version 2.0.0</p>
    
     </Layout>
   );
