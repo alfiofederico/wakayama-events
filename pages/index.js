@@ -28,7 +28,10 @@ export default function Home({events}) {
 
 export async function getStaticProps() {
   const res = await fetch(`${API_URL}/events?_sort=date:ASC&_limit=5`)
-  const events = await res.json()
+  const evts = await res.json()
+
+    let { events } = evts;
+    events = events.slice(0, 3);
 
  return {
    props: { events },
