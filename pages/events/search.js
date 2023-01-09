@@ -19,7 +19,7 @@ export default function SearchPage({ events }) {
       {events.map((evt) => (
         <EventItem key={evt.id} evt={evt} />
       ))}
-    </Layout>
+    </Layout> 
   );
 }
 
